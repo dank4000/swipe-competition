@@ -1,0 +1,41 @@
+<html ng-app="HappyApp">
+<head>
+  <meta charset="utf-8">
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="js/app.js" charset="utf-8"></script>
+  <script src="js/compController.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="css/master.css" media="screen" title="no title">
+  <title>Win With Swipe Daily</title>
+</head>
+
+  <body ng-controller="compController as comp">
+    <div class="container">
+
+
+    <h1>Happy App</h1>
+    <h3> How you been feeling in the past there?</h3>
+    <div ng-show="comp.priorState.length > 0">Average Score {{comp.happinessAverage}}</div>
+    <div ng-repeat="state in comp.priorState">
+      <ul>
+      <li ng-show="state.state  == 1">😀 {{state.date}}</li>
+      <li ng-show="state.state == 0">😬</li>
+      <li ng-show="state.state == -1">😕</li>
+    </ul>
+    </div>
+    <h3>Hey Bud, how you feeling today?</h3>
+
+    <form ng-submit="comp.add()">
+      <div ng-repeat="state in comp.state">
+
+        <input type="radio" name="currentState" value="{{state.score}}" data-name"{{state.state}}" ng-model="comp.currentState.score">
+
+        {{ state.state }} {{state.img}}
+
+    </div>
+    <button type="submit" name="button">SUBMIT ME</button>
+</form>
+</div>
+  </body>
+</html>
